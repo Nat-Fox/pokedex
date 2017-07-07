@@ -1,0 +1,33 @@
+.card .card-title {
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.card .card-content {
+    padding: 24px;
+    border-radius: 0 0 2px 2px;
+    text-align: center;
+}
+
+.img-pokebola {
+    height: 6%;
+    width: 6%;
+}
+
+.img-data {
+    height: 6%;
+    width: 7%;
+}
+
+.img-heart {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.img-heart,
+.img-data,
+.img-pokebola {
+    cursor: pointer;
+}
