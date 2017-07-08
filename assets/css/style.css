@@ -16,6 +16,10 @@
     width: 6%;
 }
 
+img {
+    cursor: pointer;
+}
+
 .img-data {
     height: 6%;
     width: 7%;
@@ -30,4 +34,21 @@
 .img-data,
 .img-pokebola {
     cursor: pointer;
+}
+
+.modal.modal-content {
+    position: absolute;
+    height: 300px;
+    max-height: 300px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.modal h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.btn-tipo {
+    margin-right: 10px;
 }
