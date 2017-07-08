@@ -57,6 +57,7 @@ $(document).ready(function() {
                                     <div class="card"> 
                                         <div class="card-content">                                                                                                  
                                                 <a href="#modal1"><img class="pokemon-test" id="pokemon-${idPokemon}" src="https://img.pokemondb.net/sprites/x-y/normal/${pokemon.pokemon_species.name}.png" alt="Bulbasaur"></a>                                                                                       
+                                                <p class="id-pokemon">${idPokemon}</p>
                                         </div>
                                         <div class="card-content"> 
                                             <p class="card-title"> ${pokemon.pokemon_species.name} </p>                                            
@@ -68,33 +69,42 @@ $(document).ready(function() {
                                             <img class="img-data" src="vendors/icon/data.png">
                                         </div>                                                                               
                                     </div>
-                                </div>`);
+                                </div>                                                              
+                                `);
+
+            // evento del pokemon clickeado
+            $('#pokemon-' + idPokemon).click(function(x) {
+                // Obtengo el id de lo que clickeo
+                //console.log('id', $(this).attr('id'));
+                var idClickeado = $(this).attr('id');
+                // Obtengo el último para armar la URL -> http://pokeapi.co/api/v2/pokemon-species/1/
+                console.log('id', idClickeado.substr(8, idClickeado.length));
+                var numberPokemon = idClickeado.substr(8, idClickeado.length);
+                $.get('http://pokeapi.co/api/v2/pokemon-species/' + numberPokemon + '/', function(response) {
+                    console.log('data ->', response);
+                    // Obteniendo la data del pokemon correspondiente
+                    console.log('nombre pokemon', response.name);
+                    // Tipo del pokemon
+                    response.egg_groups.forEach(function(tipo) {
+                        console.log('tipo', tipo.name);
+                    });
+                    // Habitat
+                    console.log('Habitat', response.habitat.name);
+                    // Descripcion
+                    console.log('Descripcion', response.flavor_text_entries[9].flavor_text);
+
+
+                });
+
+
+
+            });
+
             idPokemon++;
-
-
         });
 
-        // evento del pokemon
-        $('.pokemon-test').on('click', function() {
-            // obtiene la img donde esta el pokemon que clickeo
-            console.log($(this));
 
-        });
 
-        //$('#pokemon-' + idPokemon);
-        // $('.pokemon-test').on('click', function() {
-        //     console.log($('#pokemon-' + idPokemon));
-
-        //     // http://pokeapi.co/api/v2/pokemon-species/1/ -> esta es la url que tiene que ir variando
-        //     //console.log($(this));
-        //     $.get('http://pokeapi.co/api/v2/pokemon-species/1/', function(response) {
-        //         //console.log('api2', response.name);
-        //         // response.egg_groups.forEach(function(tipo) {
-        //         //     console.log(tipo);
-        //         // });
-
-        //     });
-        // });
 
 
     });
